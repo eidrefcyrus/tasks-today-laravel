@@ -36,3 +36,7 @@ DB_PORT=3306
 DB_DATABASE=tasks_today_laravel
 DB_USERNAME=root
 DB_PASSWORD=
+
+## Hosted Application
+
+https://eidref-tasks-laravel.great-site.net/
