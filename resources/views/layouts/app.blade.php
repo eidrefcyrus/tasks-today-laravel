@@ -1,61 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks for Today</title>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #222;
-        }
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-        nav {
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-        }
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        nav a {
-            margin-right: 16px;
-            text-decoration: none;
-            color: #2563eb;
-        }
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+            <!-- Page Heading -->
+            @isset($header)
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endisset
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background: #f3f4f6;
-        }
-
-        .empty {
-            color: #666;
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="{{ route('welcome') }}">Home</a>
-        <a href="{{ route('tasks.index') }}">Task List</a>
-        <a href="{{ route('profile') }}">Profile</a>
-        <a href="{{ route('about') }}">About</a>
-    </nav>
-
+            <!-- Page Content -->
+            <main>
+    {{ $slot ?? '' }}
     @yield('content')
-
-</body>
+</main>
+        </div>
+    </body>
 </html>

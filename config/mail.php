@@ -47,6 +47,7 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+	    'task_recipient' => env('TASK_NOTIFICATION_EMAIL'),
         ],
 
         'ses' => [
